@@ -1,0 +1,21 @@
+<nav class="sidebar">
+  <ul class="nav flex-column">
+    <li *ngFor="let item of sidebarItems" class="nav-item">
+      <a *ngIf="!item.children" class="nav-link" [routerLink]="item.route">
+        <i class="bi" [class]="item.icon"></i> {{ item.label }}
+      </a>
+      <div *ngIf="item.children" ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown-{{ item.label }}">
+          <i class="bi" [class]="item.icon"></i> {{ item.label }}
+        </a>
+        <ul ngbDropdownMenu>
+          <li *ngFor="let child of item.children" class="dropdown-item">
+            <a class="nav-link" [routerLink]="child.route">
+              <i class="bi" [class]="child.icon"></i> {{ child.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>
